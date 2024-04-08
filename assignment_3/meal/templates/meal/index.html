@@ -1,134 +1,50 @@
-{% extends "base.html" %} {% load static %}
+{% extends "base.html" %}
+{% load static %}
 
-{% block css %}link:css{% endblock css %}link:css
+{% block css %}<link
+  href="{% static 'css/index.css'%}" rel="stylesheet"/>
+{% endblock css %}
 
 {% block content %}
-<section class="main-content">
-  <div class="container">
-    <h1 class="text-center text-uppercase">Food Order Card</h1>
-    <br />
-    <br />
-    <div class="row">
-      <div class="col-sm-6 col-md-6 col-lg-4">
-        <div class="food-card">
-          <div class="food-card_img">
-            <img src="https://i.imgur.com/eFWRUuR.jpg" alt="" />
-            <a href="#!"><i class="far fa-heart"></i></a>
+<section style="background-color: #eee">
+  <div class="text-center container py-5">
+    <h4 class="mt-4 mb-5"><strong>Bestsellers</strong></h4>
+
+    <div class="row row-cols-lg-4 row-cols-md-2 mb-4">
+      {% for meal in meals%}
+      <div class="col">
+        <div class="card">
+          <div
+            class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+            data-mdb-ripple-color="light"
+          >
+            <img src="{{meal.strCategoryThumb}}" class="w-100" />
+            <a href="#!">
+              <div class="mask">
+                <div class="d-flex justify-content-start align-items-end h-100">
+                  <h5><span class="badge bg-primary ms-2">New</span></h5>
+                </div>
+              </div>
+              <div class="hover-overlay">
+                <div
+                  class="mask"
+                  style="background-color: rgba(251, 251, 251, 0.15)"
+                ></div>
+              </div>
+            </a>
           </div>
-          <div class="food-card_content">
-            <div class="food-card_title-section">
-              <a href="#!" class="food-card_title"
-                >Double Cheese Potato Burger</a
-              >
-              <a href="#!" class="food-card_author">Burger</a>
-            </div>
-            <div class="food-card_bottom-section">
-              <div class="space-between">
-                <div><span class="fa fa-fire"></span> 220 - 280 Kcal</div>
-                <div class="pull-right">
-                  <span class="badge badge-success">Veg</span>
-                </div>
-              </div>
-              <hr />
-              <div class="space-between">
-                <div class="food-card_price">
-                  <span>5.99$</span>
-                </div>
-                <div class="food-card_order-count">
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <button
-                        class="btn btn-outline-secondary minus-btn"
-                        type="button"
-                        id="button-addon1"
-                      >
-                        <i class="fa fa-minus"></i>
-                      </button>
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control input-manulator"
-                      placeholder=""
-                      aria-label="Example text with button addon"
-                      aria-describedby="button-addon1"
-                      value="0"
-                    />
-                    <div class="input-group-append">
-                      <button
-                        class="btn btn-outline-secondary add-btn"
-                        type="button"
-                        id="button-addon1"
-                      >
-                        <i class="fa fa-plus"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="card-body">
+            <a href="" class="text-reset">
+              <h5 class="card-title mb-3">{{meal.strCategory}}</h5>
+            </a>
+            <a href="" class="text-reset">
+              <p>{{ meal.strCategoryDescription|truncatewords:10 }}</p>
+            </a>
+            <h6 class="mb-3">Id: {{meal.idCategory}}</h6>
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-6 col-lg-6">
-        <div class="food-card food-card--vertical">
-          <div class="food-card_img">
-            <img src="https://i.imgur.com/eFWRUuR.jpg" alt="" />
-            <a href="#!"><i class="fa fa-heart"></i></a>
-          </div>
-          <div class="food-card_content">
-            <div class="food-card_title-section">
-              <a href="#!" class="food-card_title"
-                >Double Cheese Potato Burger</a
-              >
-              <a href="#!" class="food-card_author">Burger</a>
-            </div>
-            <div class="food-card_bottom-section">
-              <div class="space-between">
-                <div><span class="fa fa-fire"></span> 220 - 280 Kcal</div>
-                <div class="pull-right">
-                  <span class="badge badge-success">Veg</span>
-                </div>
-              </div>
-              <hr />
-              <div class="space-between">
-                <div class="food-card_price">
-                  <span>5.99$</span>
-                </div>
-                <div class="food-card_order-count">
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <button
-                        class="btn btn-outline-secondary minus-btn"
-                        type="button"
-                        id="button-addon1"
-                      >
-                        <i class="fa fa-minus"></i>
-                      </button>
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control input-manulator"
-                      placeholder=""
-                      aria-label="Example text with button addon"
-                      aria-describedby="button-addon1"
-                      value="0"
-                    />
-                    <div class="input-group-append">
-                      <button
-                        class="btn btn-outline-secondary add-btn"
-                        type="button"
-                        id="button-addon1"
-                      >
-                        <i class="fa fa-plus"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
